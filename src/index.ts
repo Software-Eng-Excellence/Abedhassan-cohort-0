@@ -1,45 +1,46 @@
 
-import { FinanceCalculator, ItemValidator, MaxPriceValidator, OrderManagement, PriceValidator, Validator } from './app-clean';
+import { FinanceCalculator, ItemValidator, MaxPriceValidator, OrderManagement, PriceValidator, Validator } from './app';
+import  logger  from './util/logger';
 
-  const orders = [
-    { id: 1, item: "Sponge", price: 15 },
-    { id: 2, item: "Chocolate", price: 20 },
-    { id: 3, item: "Fruit", price: 18 },
-    { id: 4, item: "Red Velvet", price: 25 },
-    { id: 5, item: "Coffee", price: 8 },
-  ];
-
-  const rules = [
-    new PriceValidator(),
-    new ItemValidator(),
-    new MaxPriceValidator()
+const orders = [
+  { id: 1, item: "Sponge", price: 15 },
+  { id: 2, item: "Chocolate", price: 20 },
+  { id: 3, item: "Fruit", price: 18 },
+  { id: 4, item: "Red Velvet", price: 25 },
+  { id: 5, item: "Coffee", price: 8 },
 ];
 
-  const OrderManager = new OrderManagement(new Validator([...rules]), new FinanceCalculator());
-  for (const order of orders) {
-    OrderManager.addOrder(order.item, order.price);
-  }
+const rules = [
+  new PriceValidator(),
+  new ItemValidator(),
+  new MaxPriceValidator()
+];
 
-  // Adding a new order directly
-  const newItem = "Marble";
-  const newPrice = 22;
+const OrderManager = new OrderManagement(new Validator([...rules]), new FinanceCalculator());
+for (const order of orders) {
+  OrderManager.addOrder(order.item, order.price);
+}
 
-  OrderManager.addOrder(newItem, newPrice);
+// Adding a new order directly
+const newItem = "Marble";
+const newPrice = 22;
 
-  console.log("Orders after adding a new order:", OrderManager.getOrders());
+OrderManager.addOrder(newItem, newPrice);
 
-  // Calculate Total Revenue directly
-  console.log("Total Revenue:", OrderManager.getTotalRevenue());
+logger.info("Orders after adding a new order:", OrderManager.getOrders());
 
-  // Calculate Average Buy Power directly
-  console.log("Average Buy Power:", OrderManager.getBuyPower());
+// Calculate Total Revenue directly
+logger.info("Total Revenue:", OrderManager.getTotalRevenue());
 
-  // Fetching an order directly
-  const fetchId = 2;
-  const fetchedOrder = OrderManager.getOrder(fetchId);
-  console.log("Order with ID 2:", fetchedOrder);
+// Calculate Average Buy Power directly
+logger.info("Average Buy Power:", OrderManager.getBuyPower());
 
-  // Attempt to fetch a non-existent order
-  const nonExistentId = 10;
-  const nonExistentOrder = OrderManager.getOrder(nonExistentId);
-  console.log("Order with ID 10 (non-existent):", nonExistentOrder);
+// Fetching an order directly
+const fetchId = 2;
+const fetchedOrder = OrderManager.getOrder(fetchId);
+logger.info("Order with ID 2:", fetchedOrder);
+
+// Attempt to fetch a non-existent order
+const nonExistentId = 10;
+const nonExistentOrder = OrderManager.getOrder(nonExistentId);
+logger.info("Order with ID 10 (non-existent):", nonExistentOrder);
