@@ -1,32 +1,35 @@
 {
-  "name": "se2",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint src",
-    "dev": "ts-node-dev --respawn src/index.ts",
-    "prebuild": "rm -rf dist",
-    "build": "tsc",
-    "postbuild": "echo \"Finished build with size: $(du -sh dir | cut -f1)\"",
-    "prestart": "npm run build",
-    "start": "node build/index.js"
-  },
-  "keywords": [],
-  "author": "Abed hs",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/jest": "^29.5.14",
-    "eslint": "^9.21.0",
-    "globals": "^16.0.0",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.2.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.7"
-  }
+   "type": "module",
+   "name": "se2",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "lint": "eslint src",
+      "dev": "ts-node-dev --respawn src/index.ts",
+      "prebuild": "rm -rf dist",
+      "build": "tsc",
+      "postbuild": "echo \"Finished build with size: $(du -sh dir | cut -f1)\"",
+      "prestart": "npm run build",
+      "start": "node build/index.js",
+      "test": "jest"
+   },
+   "keywords": [],
+   "author": "Abed hs",
+   "license": "ISC",
+   "description": "",
+   "devDependencies": {
+      "@eslint/js": "^9.21.0",
+      "@types/jest": "^29.5.14",
+      "eslint": "^9.21.0",
+      "globals": "^16.0.0",
+      "jest": "^29.7.0",
+      "ts-jest": "^29.2.6",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.8.2",
+      "typescript-eslint": "^8.26.0"
+   },
+   "dependencies": {
+      "dotenv": "^16.4.7",
+      "winston": "^3.17.0"
+   }
 }
