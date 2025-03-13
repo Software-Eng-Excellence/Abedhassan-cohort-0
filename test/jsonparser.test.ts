@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import { Readable } from 'stream';
 import { parsejson } from '../src/util/jsonparser';
