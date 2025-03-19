@@ -1,4 +1,4 @@
-import { IItem, ItemCategory } from "./Item.model";
+import { IItem, ItemCategory } from "./IItem";
 export class clothing implements IItem {
     private clothingType: string;
     private size: string;

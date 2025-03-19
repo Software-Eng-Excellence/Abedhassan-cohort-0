@@ -8,6 +8,9 @@ export class PetBuilder {
     private size!: string;
     private flavor!: string;
     private ecoFriendly!: string;
+    public static newBuilder(): PetBuilder {
+        return new PetBuilder();
+    }   
 
     setProductType(productType: string): this {
         this.productType = productType;
@@ -52,7 +55,8 @@ export class PetBuilder {
         for (const property in requiredProperties) {
             if (!requiredProperties[property as keyof typeof requiredProperties]) {
                 logger.error("Missing required properties, could not build pet");
-                throw new Error("Missing required properties");
+                throw new Error("Missing required property");
+                
             }
         }
 

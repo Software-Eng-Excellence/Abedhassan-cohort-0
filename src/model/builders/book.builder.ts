@@ -11,7 +11,9 @@ export class BookBuilder {
     private publisher!: string;
     private specialEdition!: string;
     private packaging!: string;
-
+    public static newBuilder(): BookBuilder {
+        return new BookBuilder();
+    }
     setTitle(title: string): this {
         this.title = title;
         return this;

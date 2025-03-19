@@ -1,12 +1,12 @@
-import { IItem, ItemCategory } from "./Item.model";
+import { IItem, ItemCategory } from "./IItem";
 
-type CakeType = 'Birthday' | 'Wedding' | 'Anniversary' | 'Baby Shower' | 'Graduation' | 'Other';
+
 
 export class Cake implements IItem {
    
 
   
-    private type: CakeType;
+    private type: string;
     private flavor: string;
     private filling: string;
     private size: number;
@@ -22,7 +22,7 @@ export class Cake implements IItem {
     private packagingType: string;
   
     constructor(
-        type: CakeType,
+        type: string,
         flavor: string,
         filling: string,
         size: number,
@@ -58,7 +58,7 @@ export class Cake implements IItem {
         return ItemCategory.CAKE;
     }
 
-    getType(): CakeType {
+    getType(): string {
         return this.type;
     }
 

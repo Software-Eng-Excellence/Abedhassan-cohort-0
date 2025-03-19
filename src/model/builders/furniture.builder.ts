@@ -9,7 +9,9 @@ export class FurnitureBuilder {
     private style!: string;
     private assemblyRequired!: boolean;
     private warranty!: string;
-
+    public static newBuilder(): FurnitureBuilder {
+        return new FurnitureBuilder();
+    }
     setType(type: string): this {
         this.type = type;
         return this;
@@ -59,7 +61,8 @@ export class FurnitureBuilder {
         for (const property in requiredProperties) {
             if (!requiredProperties[property as keyof typeof requiredProperties]) {
                 logger.error("Missing required properties, could not build furniture");
-                throw new Error("Missing required properties");
+                throw new Error("Missing required property");
+                
             }
         }
 

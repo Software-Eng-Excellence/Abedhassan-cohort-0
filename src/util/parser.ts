@@ -1,5 +1,5 @@
 import fs from 'fs'; 
-import logger from './logger';
+import logger from '../util/logger';
 
 export const parseCSV = (filePath: string): Promise<string[][]> => {
   return new Promise((resolve, reject) => {
