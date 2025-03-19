@@ -1,9 +1,9 @@
+import { Cake } from "../../model/Cake.model";
 import logger from "../../util/logger";
-import { Cake } from "../Cake.model";
-type CakeType = 'Birthday' | 'Wedding' | 'Anniversary' | 'Baby Shower' | 'Graduation' | 'Other';
 
-export class cakeBuilder{
-    private type!: CakeType;
+
+export class CakeBuilder {
+    private type!:string;
     private flavor!: string;
     private filling!: string;
     private size!: number;
@@ -17,72 +17,77 @@ export class cakeBuilder{
     private allergies!: string;
     private specialIngredients!: string;
     private packagingType!: string;
-    setType(type: CakeType): this {
+
+    public static newBuilder():CakeBuilder{
+        return new CakeBuilder();
+    }
+
+    setType(type: string): CakeBuilder {
         this.type = type;
         return this;
     }
 
-    setFlavor(flavor: string): this {
+    setFlavor(flavor: string): CakeBuilder {
         this.flavor = flavor;
         return this;
     }
 
-    setFilling(filling: string): this {
+    setFilling(filling: string): CakeBuilder {
         this.filling = filling;
         return this;
     }
 
-    setSize(size: number): this {
+    setSize(size: number): CakeBuilder {
         this.size = size;
         return this;
     }
 
-    setLayers(layers: number): this {
+    setLayers(layers: number): CakeBuilder {
         this.layers = layers;
         return this;
     }
 
-    setFrostingType(frostingType: string): this {
+    setFrostingType(frostingType: string): CakeBuilder {
         this.frostingType = frostingType;
         return this;
     }
 
-    setFrostingFlavor(frostingFlavor: string): this {
+    setFrostingFlavor(frostingFlavor: string): CakeBuilder {
         this.frostingFlavor = frostingFlavor;
         return this;
     }
 
-    setDecorationType(decorationType: string): this {
+    setDecorationType(decorationType: string): CakeBuilder {
         this.decorationType = decorationType;
         return this;
     }
 
-    setDecorationColor(decorationColor: string): this {
+    setDecorationColor(decorationColor: string): CakeBuilder {
         this.decorationColor = decorationColor;
         return this;
     }
 
-    setCustomMessage(customMessage: string): this {
+    setCustomMessage(customMessage: string): CakeBuilder {
         this.customMessage = customMessage;
         return this;
     }
 
-    setShape(shape: string): this {
+    setShape(shape: string): CakeBuilder {
         this.shape = shape;
         return this;
     }
 
-    setAllergies(allergies: string): this {
+    setAllergies(allergies: string): CakeBuilder {
         this.allergies = allergies;
         return this;
     }
 
-    setSpecialIngredients(specialIngredients: string): this {
+    setSpecialIngredients(specialIngredients: string): CakeBuilder {
         this.specialIngredients = specialIngredients;
         return this;
     }
 
-    setPackagingType(packagingType: string): this {
+    setPackagingType(packagingType: string): CakeBuilder {
         this.packagingType = packagingType;
         return this;
     }
@@ -103,13 +108,16 @@ export class cakeBuilder{
             specialIngredients: this.specialIngredients,
             packagingType: this.packagingType
         };
-        for (const property in requiredProperties) {
+    
+        
+      for (const property in requiredProperties) {
             if (!requiredProperties[property as keyof typeof requiredProperties]) {
-                logger.error("Missing required properties,could not build cake");
+                logger.error("Missing required properties, could not build cake");
                 throw new Error("Missing required property");
+                
             }
         }
-        
+    
         return new Cake(
             this.type,
             this.flavor,
@@ -127,6 +135,6 @@ export class cakeBuilder{
             this.packagingType
         );
     }
+    
 }
-
-export { Cake };
+export{Cake}

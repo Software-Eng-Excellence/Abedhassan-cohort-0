@@ -8,6 +8,9 @@ export class ToyBuilder {
     private material!: string;
     private batteryRequired!: boolean;
     private educational!: boolean;
+    public static newBuilder(): ToyBuilder {
+        return new ToyBuilder();
+    }   
 
     setType(type: string): this {
         this.type = type;
@@ -40,21 +43,22 @@ export class ToyBuilder {
     }
 
     build(): toy {
-        const requiredProperties = {
-            type: this.type,
-            ageGroup: this.ageGroup,
-            brand: this.brand,
-            material: this.material,
-            batteryRequired: this.batteryRequired,
-            educational: this.educational
-        };
+        const requiredProperties = [
+            this.type,
+            this.ageGroup,
+            this.brand,
+            this.material,
+            this.batteryRequired,
+            this.educational
+        ];
 
-        for (const property in requiredProperties) {
-            if (!requiredProperties[property as keyof typeof requiredProperties]) {
-                logger.error("Missing required properties, could not build toy");
-                throw new Error("Missing required properties");
+        for (const property of requiredProperties) {
+            if (!property) {
+            if (property === undefined || property === null) {
+                throw new Error('Missing required property');
             }
         }
+    }
 
         return new toy(
             this.type,
